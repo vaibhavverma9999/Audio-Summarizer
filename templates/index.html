@@ -1,0 +1,334 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Summary</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Favicons -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='lib/bootstrap/css/bootstrap.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='lib/font-awesome/css/font-awesome.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='lib/animate/animate.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='lib/ionicons/css/ionicons.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='lib/lightbox/css/lightbox.min.css')}}">
+  <style>
+    .wrapper
+  {
+  
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  }  
+
+  .file-upload{
+
+    height:200px;
+    width:200px;
+    border-radius: 100px;
+    position:relative;
+    
+    display:flex;
+    justify-content:center;
+    align-items: center;  
+
+    border:4px solid #FFFFFF;
+    overflow:hidden;
+    background-image: linear-gradient(to bottom, #1C4FC3 50%, #FFFFFF 50%);
+    background-size: 100% 200%;
+    transition: all 1s;
+    color: #FFFFFF;
+    font-size:100px;
+    }
+
+    input[type='file']{
+
+      height:200px;
+      width:200px;
+      position:absolute;
+      top:0;
+      left:0;
+      opacity:0;
+      cursor:pointer;
+
+    } 
+    
+  .file-upload:hover{
+
+      background-position: 0 -100%;
+
+      color:#1C4FC3;
+
+    }
+  .submit-button-ocr{
+    background-color:#1C4FC3;
+    text-decoration: none;
+    border: 1px white solid;
+    color:white;
+    font-weight: 100;
+    height: 30px;
+    width:  100px;
+    transition: all 0.3s ease 0s;
+  }   
+
+  .submit-button-ocr:hover 
+  {
+    color: white;
+    background-color:#1c4fc3;
+    background: none;
+    height: 50px;
+    width:150px;
+    font-weight: 800;
+    transition: all 0.3s ease 0s;
+  }
+  #ocr-results
+  {
+    display: none;
+    padding: 2px;
+    border: 2px solid #1c4fc3; 
+    height: 500px;
+    width:  700px;
+  }
+  #results
+  {
+    display: none;
+  }
+  </style>
+</head>
+
+<body>
+
+  <!--==========================
+  Header
+  ============================-->
+  <header id="header" class="fixed-top">
+    <div class="container">
+
+      <div class="logo float-left">
+        <h1 class="text-light"><a href="#header"><strong><span>SUMMARYT</span></strong></a></h1>
+      </div>
+
+      <nav class="main-nav float-right d-none d-lg-block">
+        <ul>
+          <li class="active"><a href="#intro">Home</a></li>
+          <li><a href="#howto">How does Summaryt work
+          ?</a></li>
+          <li><a href="#doocr">Let's Summarise</a></li>
+        </ul>
+      </nav><!-- .main-nav -->
+      
+    </div>
+  </header><!-- #header -->
+
+  <!--==========================
+    Intro Section
+  ============================-->
+  <section id="intro" class="clearfix">
+    <div class="container">
+
+      <div class="intro-img">
+        <img src="{{url_for('static',filename='img/final.png')}}" alt="" class="img-fluid">
+      </div>
+
+      <div class="intro-info">
+        <h2>Summarise your audio files <br>into concise text<br>using summaryt</h2>
+        <div>
+          <a href="#howto" class="btn-get-started scrollto">Summary Done right</a>
+          <a href="#doocr" class="btn-services scrollto">Let's Summarise</a>
+        </div>
+      </div>
+
+    </div>
+  </section><!-- #intro -->
+
+  <main id="main">
+
+    <!--==========================
+      How to Section
+    ============================-->
+    <section id="howto" class="section-bg">
+      <div class="container">
+
+        <header class="section-header">
+          <h3>How Does Summaryt Work?</h3>
+          <p>Summaryt is an attempt to create a text summarizer that takes audio file as an input and converts the contents of the audio file into a summarised text for you to read and enjoy.</p>
+        </header>
+
+        <div class="row">
+
+          <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-duration="1.4s">
+            <div class="box">
+              <div class="icon"><i class="ion-ios-camera" style="color:#086aed;"></i></div>
+              <h4 class="title">1. Capturing the audio file</h4>
+              <p class="description">The first step in our process is to capture the audio file that is to be summarised. The website currently supports only upload of audio files.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-5 wow bounceInUp" data-wow-duration="1.4s">
+            <div class="box">
+              <div class="icon"><i class="ion-ios-cog" style="color: #10acbc;"></i></div>
+              <h4 class="title">2. Noise Removal and Pre-processing</h4>
+              <p class="description">This is a preprocessing step used to remove noise from the noise to increase the accuracy of the text summarisation module. The preprocessing involves removal of background noise to obtain clean audio.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+            <div class="box">
+              <div class="icon"><i class="ion-ios-paper" style="color: #2cbccc;"></i></div>
+              <h4 class="title">3. Speech to text conversion</h4>
+              <p class="description">Once the audio is cleaned and pre processed, it is sent for conversion into text.This step converts the clean audio speech into text that will be used for text summarisation.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-5 wow bounceInUp" data-wow-delay="0.1s" data-wow-duration="1.4s">
+            <div class="box">
+              <div class="icon"><i class="ion-ios-barcode" style="color:#6ee5ee;"></i></div>
+              <h4 class="title">4. Text Preprocessing</h4>
+              <p class="description">This stage is responsible for cleaning up the text recieved from the speech to text conversion phase. It involves removing slang words and non native words from the text.</p>
+            </div>
+          </div>
+
+          <div class="col-md-6 col-lg-5 offset-lg-1 wow bounceInUp" data-wow-delay="0.2s" data-wow-duration="1.4s">
+            <div class="box">
+              <div class="icon"><i class="ion-ios-checkmark" style="color: #17646d;"></i></div>
+              <h4 class="title">5. Text Summarisation</h4>
+              <p class="description">Once the text is preprocessed it is then summarised using natural language processing tools.</p>
+            </div>
+          </div>
+          <div class="col-md-6 col-lg-5 wow bounceInUp" data-wow-delay="0.2s" data-wow-duration="1.4s">
+            <div class="box">
+              <div class="icon"><i class="ion-ios-download" style="color: #4cccd4;"></i></div>
+              <h4 class="title">6. Rearrangement and export</h4>
+              <p class="description">Once the text is summarised, it is then presented to the user.The user may download the text as pdf for future use.</p>
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+    </section><!-- #howto -->
+
+    <!--==========================
+      Let's OCR section
+    ============================-->
+    <section id="doocr">
+      <div class="container">
+
+        <header class="section-header">
+          <h3>Let's Summarise</h3>
+          <p>Got an audio to summarise? Let's summaryt</p>
+        </header>
+      </div>
+
+      <div class="icon-box wow fadeInUp" style="max-width:100%;background-color:#1c4fc3;">
+              <br>
+              <div class="wrapper" >
+                  <form id="form1" enctype="multipart/form-data" action="/" method="post">
+                    <div class="file-upload">
+                      <input type="file" name="audio"/>
+                      <i class="fa fa-arrow-up"></i>
+                    </div>
+              <br>
+
+                              <center><button class="submit-button-ocr" type="submit">Summaryt</button></center>
+
+                  </form>
+              </div>
+              <br>
+      </div>
+      <br>
+        <div id="results" class="icon-box wow fadeInup">
+        <center><h1 class="title rctext">Recognised text:</h1></center>
+        <center><textarea id="ocr-results"></textarea></center>
+      </div>
+
+    </section>
+
+    <!--==========================
+      Facts Section
+    ============================-->
+   <!-- <section id="facts" class="wow fadeIn">
+      <div class="container">
+        <header class="section-header">
+          <h3>OCR: INFOGRAPHICS</h3>
+          <p>Some facts related to Optical Character Recognition</p>
+        </header>
+
+        <div class="row row-eq-height justify-content-center">
+
+          <div class="col-lg-4 mb-4">
+            <div class="card wow bounceInUp">
+                <i class="fa fa-book"></i>
+              <div class="card-body">
+                <h5 class="card-title">5 Million</h5>
+                <p class="card-text"> Books are digitized every month using optical character recognition throughout the world.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 mb-4">
+            <div class="card wow bounceInUp">
+                <i class="fa fa-language"></i>
+              <div class="card-body">
+                <h5 class="card-title">1 Million</h5>
+                <p class="card-text">Books are translated after digitizing using optical character recognition every month.</p>
+              </div>
+            </div>
+          </div>
+
+          <div class="col-lg-4 mb-4">
+            <div class="card wow bounceInUp">
+                <i class="fa fa-object-group"></i>
+              <div class="card-body">
+                <h5 class="card-title">100 Million</h5>
+                <p class="card-text">Books digitized by Google Books as of 2018 using opical character recognition</p>
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="row counters">
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">100</span>
+            <p>+Cloud vision services for optical character recognition</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">3,00,000</span>
+            <p>+Requests to ocr api's per minute</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">500</span>
+            <p>+Languages supported by ocr services</p>
+          </div>
+
+          <div class="col-lg-3 col-6 text-center">
+            <span data-toggle="counter-up">80</span>
+            <p>+Major industries use ocr everyday including medical, finance and law agencies</p>
+          </div>
+  
+        </div>
+
+      </div>
+    </section>
+-->
+  <a href="#" class="back-to-top"><i class="fa fa-chevron-up"></i></a>
+ 
+  <!-- JavaScript Libraries -->
+  <script src="{{url_for('static',filename='lib/jquery/jquery.min.js')}}"></script>
+   <script src="{{url_for('static',filename='lib/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+   <script src="{{url_for('static',filename='lib/wow/wow.min.js')}}"></script>
+   <script src="{{url_for('static',filename='lib/waypoints/waypoints.min.js')}}"></script>
+   <script src="{{url_for('static',filename='lib/counterup/counterup.min.js')}}"></script>
+   <script src="{{url_for('static',filename='lib/lightbox/js/lightbox.min.js')}}"></script>
+   <script src="{{url_for('static',filename='js/main.js')}}"></script>
+   <script src="{{url_for('static',filename='js/query.js')}}"></script>
+
+</body>
+</html>

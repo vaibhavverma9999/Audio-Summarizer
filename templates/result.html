@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>Result of Summarisation</title>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport">
+  <meta content="" name="keywords">
+  <meta content="" name="description">
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,700,700i|Montserrat:300,400,500,700" rel="stylesheet">
+
+
+  <!-- Libraries CSS Files -->
+  <!--
+  <link href="lib/font-awesome/css/font-awesome.min.css" rel="stylesheet">
+  <link href="lib/animate/animate.min.css" rel="stylesheet">
+  <link href="lib/ionicons/css/ionicons.min.css" rel="stylesheet">
+  <link href="lib/owlcarousel/assets/owl.carousel.min.css" rel="stylesheet">
+  <link href="lib/lightbox/css/lightbox.min.css" rel="stylesheet">
+  -->
+  <!-- Main Stylesheet File -->
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='css/style.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='lib/bootstrap/css/bootstrap.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='lib/font-awesome/css/font-awesome.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='lib/animate/animate.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='lib/ionicons/css/ionicons.min.css')}}">
+  <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='lib/lightbox/css/lightbox.min.css')}}">
+    <style>
+        .res-icons
+        {
+            font-size:80px;
+        }
+    </style>
+    </head>
+    <body>
+<header id="header" class="fixed-top">
+    <div class="container">
+
+      <div class="logo">
+        <center><h1 class="text-light"><a href="#header"><span>Text Classifier</span></a></h1></center>
+      </div>
+
+    </div>
+
+  </header><!-- #header -->
+    <br>
+    <br>
+    <section id="howto" class="section-bg">
+            <div class="container">
+
+        <header class="section-header">
+          <h3>The result of your text summarisation request is as follows</h3>
+        </header>
+        <div class="row">
+          <div class="col-md-6 col-lg-5  offset-lg-4 wow bounceInUp" data-wow-duration="1.4s">
+            <div class="box">
+              <div class="icon"><i class="ion-ios-camera" style="color:#086aed;"></i></div>
+              <h4 class="title">Summarised Text</h4>
+              <p class="description">{{text}}</p>
+            </div>
+          </div>
+        </div>
+            </div>
+    </section>
+     <script src="{{url_for('static',filename='lib/jquery/jquery.min.js')}}"></script>
+   <script src="{{url_for('static',filename='lib/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+   <script src="{{url_for('static',filename='lib/wow/wow.min.js')}}"></script>
+   <script src="{{url_for('static',filename='lib/waypoints/waypoints.min.js')}}"></script>
+   <script src="{{url_for('static',filename='lib/counterup/counterup.min.js')}}"></script>
+   <script src="{{url_for('static',filename='lib/lightbox/js/lightbox.min.js')}}"></script>
+   <script src="{{url_for('static',filename='js/main.js')}}"></script>
+   <script src="{{url_for('static',filename='js/query.js')}}"></script>
+    </body>
+</html>
